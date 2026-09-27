@@ -289,6 +289,7 @@ public class Main {
                     int b1 = obj.readInt(sc, "Введите число b: ");
                     int c1 = obj.readInt(sc, "Введите число c: ");
                     System.out.println("Все три числа равны: " + obj.isEqual(a1, b1, c1));
+                    System.out.println();
                     break;
                 }
                 case 2: {
@@ -320,6 +321,7 @@ public class Main {
                     System.out.println("\nДень недели");
                     int d = obj.readInt(sc, "Введите число: ");
                     System.out.println("Результат: " + obj.day(d));
+                    System.out.println();
                     break;
                 }
                 case 3: {
@@ -348,6 +350,7 @@ public class Main {
                     System.out.println("\nПравый треугольник");
                     int n4 = obj.readInt(sc, "Введите число x: ");
                     obj.rightTriangle(n4);
+                    System.out.println();
                     break;
                 }
                 case 4: {
@@ -399,11 +402,15 @@ public class Main {
                     System.out.println("\nВсе вхождения");
                     int m1 = obj.readInt(sc, "Введите число x из основного массива: ");
                     int[] res2 = obj.findAll(arr, m1);
-                    System.out.print("Результат: ");
-                    for (int i = 0; i < res2.length; i++) {
-                        System.out.print(res2[i] + " ");
+                    if (res2.length == 0) {
+                        System.out.println("Данное число не входит в массив");
+                    } else {
+                        System.out.print("Результат: ");
+                        for (int i = 0; i < res2.length; i++) {
+                            System.out.print(res2[i] + " ");
+                        }
                     }
-                    System.out.println();
+                    System.out.println("\n");
                     break;
                 }
                 case 0: {
