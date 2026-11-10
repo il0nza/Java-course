@@ -3,11 +3,24 @@ public class Name {
     private String name;
     private String surname;
 
-    public Name(String name) {
-        this(name, null, null);
+    public Name(String firstName) {
+        /*
+        // для задания 1
+        this.name = firstName;
+        this.lastName = null;
+        this.surname = null;
+        */
+
+        this(firstName, null, null);
     }
 
     public Name(String firstName, String lastName) {
+        /*
+        // для задания 1
+        this.name = firstName;
+        this.lastName = lastName;
+        this.surname = null;
+        */
         this(firstName, lastName, null);
     }
 
