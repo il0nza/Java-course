@@ -3,12 +3,12 @@ public class Person {
     private int height;
     private Person father;
 
-     // создание человека, если имя передано строкой
+     // задача 4.6: создание человека, если имя передано строкой
     public Person(String firstName, int height) {
         this(new Name(firstName), height, null);
     }
 
-    // создание человека, если имя передано строкой и есть отец
+    // задача 4.6: создание человека, если имя передано строкой и есть отец
     public Person(String firstName, int height, Person father) {
         this(new Name(firstName), height, father);
     }
