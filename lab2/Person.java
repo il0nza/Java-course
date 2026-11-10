@@ -3,23 +3,28 @@ public class Person {
     private int height;
     private Person father;
 
+     // создание человека, если имя передано строкой
     public Person(String firstName, int height) {
         this(new Name(firstName), height, null);
     }
 
+    // создание человека, если имя передано строкой и есть отец
     public Person(String firstName, int height, Person father) {
         this(new Name(firstName), height, father);
     }
 
+    // задача 2.2: конструктор, принимающий готовый объект Name и рост
     public Person(Name name, int height) {
         this(name, height, null);
     }
 
+     // основной конструктор (связывает задачи 2.2, 2.3 и 4.6)
     public Person(Name name, int height, Person father) {
         this.name = name;
         this.height = height;
         this.father = father;
 
+        // задача 2.3: наследование отчества и фамилии от отца
         if (this.father != null) {
             if (this.name.getLastName() == null || this.name.getLastName().isEmpty()) {
                 if (this.father.getName().getLastName() != null) {
