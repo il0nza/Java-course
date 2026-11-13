@@ -52,13 +52,8 @@ public class Main {
             System.out.println("\nВвод данных для имени #" + (i + 1));
             String first = obj.readString(sc, "Введите Личное имя: ", false);
             String last = obj.readString(sc, "Введите Фамилию (или '-' для пропуска): ", true);
-
-            if (last.isEmpty())
-                last = null;
-
             String surname = obj.readString(sc, "Введите Отчество (или '-' для пропуска): ", true);
-            if (surname.isEmpty())
-                surname = null;
+        
             names[i] = new Name(first, last, surname);
         }
 
@@ -81,13 +76,8 @@ public class Main {
             System.out.println("\nВвод данных для человека #" + (i + 1));
             String first = obj.readString(sc, "Введите Личное имя: ", false);
             String last = obj.readString(sc, "Введите Фамилию (или '-' для пропуска): ", true);
-            if (last.isEmpty())
-                last = null;
-
             String surname = obj.readString(sc, "Введите Отчество (или '-' для пропуска): ", true);
-            if (surname.isEmpty())
-                surname = null;
-
+           
             Name personName = new Name(first, last, surname);
             int height = obj.readInt(sc, "Введите рост (в см): ", 10, 300);
             Person selectedFather = null;
