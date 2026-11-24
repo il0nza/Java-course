@@ -11,13 +11,13 @@ public class Main {
             System.out.print("""
                     Выберите задание:
                         1 - Задание 1.
-                        2 - Задание 2.
-                        3 - Задание 3.
-                        4 - Задание 4.
-                        5 - Задание 5.
-                        6 - Задание 6.
+                        2 - Задание 2. Секреты.
+                        3 - Задание 3. Трехмерная точка.
+                        4 - Задание 4. Фигуры.
+                        5 - Задание 5. Мяуканье.
+                        6 - Задание 6. Сравнение точек.
                         7 - Задание 7.
-                        8 - Задание 8.
+                        8 - Задание 8. Клонирование линии.
                         0 - Выход
                       """);
             choice = input.readInt(sc, "Ваш выбор: ", 0, 8);
@@ -50,7 +50,7 @@ public class Main {
                     }
                     break;
                 case 2:
-
+                    testSecret(sc, input);
                     break;
                 case 3:
 
@@ -151,7 +151,8 @@ public class Main {
             System.out.println("Человек: " + p + " | Объект Name: " + p.getName() + " | Отец: " + fatherName);
         }
 
-        System.out.println("\nПроверка изменения роста (setHeight) для первого человека (" + people[0].getName() + "):");
+        System.out
+                .println("\nПроверка изменения роста (setHeight) для первого человека (" + people[0].getName() + "):");
         while (true) {
             int newHeight = input.readInt(sc, "Введите новый рост: ");
             try {
@@ -161,6 +162,53 @@ public class Main {
             } catch (IllegalArgumentException e) {
                 System.out.println("Перехвачено исключение при изменении роста: " + e.getMessage());
             }
+        }
+    }
+
+    private static void testSecret(Scanner sc, Input input) {
+        System.out.println("\nТест класса Секрет");
+        int count = input.readInt(sc, "Сколько человек будет в цепочке секрета (от 2 до 10)? ", 2, 10);
+        Secret[] chain = new Secret[count];
+
+        // создание исходного секрета
+        String firstName = input.readString(sc, "Введите имя создателя секрета: ", false);
+        String text = input.readText(sc, "Введите текст секрета: ");
+        chain[0] = new Secret(firstName, text);
+        System.out.println(chain[0]);
+
+        // передача секрета по цепочке
+        for (int i = 1; i < count; i++) {
+            String nextName = input.readString(sc,
+                    "\nВведите имя " + (i + 1) + "-го хранителя, которому передадут секрет: ", false);
+            System.out.print("Процесс передачи: ");
+            chain[i] = new Secret(chain[i - 1], nextName);
+            System.out.println(chain[i]);
+        }
+
+        // проверка запрета на повторную передачу секрета
+        System.out.println("\nПопытка рассказать секрет второму человеку:");
+        try {
+            System.out.println("Пробуем передать секрет от " + chain[0] + " еще одному человеку");
+            Secret duplicate = new Secret(chain[0], "Шпион");
+        } catch (IllegalStateException e) {
+            System.out.println("Поймана ошибка: " + e.getMessage());
+        }
+
+        // проверка методов навигации для выбранного хранителя
+        System.out.println("\nПроверка информации по цепочке");
+        int index = input.readInt(sc, "Выберите номер хранителя для проверки (от 1 до " + count + "): ", 1, count) - 1;
+        Secret selected = chain[index];
+
+        System.out.println("Выбран: " + selected);
+        System.out.println("Каким по очереди узнал секрет: " + selected.getOrder());
+        System.out.println("Сколько человек узнали после него: " + selected.getPeopleAfterCount());
+
+        int shift = input.readInt(sc, "Введите сдвиг N (например, 1 — следующий, -1 — предыдущий): ");
+        try {
+            System.out.println("Имя N-го хранителя: " + selected.getNKeeperName(shift));
+            System.out.println("Разница в длине текста с N-ым хранителем: " + selected.getLengthDifference(shift));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Поймана ошибка при поиске: " + e.getMessage());
         }
     }
 }
