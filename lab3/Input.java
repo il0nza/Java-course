@@ -60,4 +60,18 @@ public class Input {
         System.out.print(prompt);
         return sc.nextLine();
     }
+
+    public double readDouble(Scanner sc, String prompt) {
+    while (true) {
+        System.out.print(prompt);
+        if (sc.hasNextDouble()) {
+            double value = sc.nextDouble();
+            sc.nextLine();
+            return value;
+        } else {
+            System.out.println("Ошибка: введите число (например, 5 или 3.5).");
+            sc.next();
+        }
+    }
+}
 }
