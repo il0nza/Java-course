@@ -59,7 +59,7 @@ public class Main {
                     testBirds(sc, input);
                     break;
                 case 5:
-
+                    testMeow(sc, input);
                     break;
                 case 6:
                     testPointEquals(sc, input);
@@ -212,105 +212,142 @@ public class Main {
         }
     }
 
-private static void testPoint3D(Scanner sc, Input input) {
-    System.out.println("\nТрехмерная точка");
-    Point3D[] points = new Point3D[3];
+    private static void testPoint3D(Scanner sc, Input input) {
+        System.out.println("\nТрехмерная точка");
+        Point3D[] points = new Point3D[3];
 
-    for (int i = 0; i < 3; i++) {
-        System.out.println("\nВведите координаты для 3D-точки #" + (i + 1) + ":");
-        double x = input.readDouble(sc, "X: ");
-        double y = input.readDouble(sc, "Y: ");
-        double z = input.readDouble(sc, "Z: ");
-        points[i] = new Point3D(x, y, z);
-    }
+        for (int i = 0; i < 3; i++) {
+            System.out.println("\nВведите координаты для 3D-точки #" + (i + 1) + ":");
+            double x = input.readDouble(sc, "X: ");
+            double y = input.readDouble(sc, "Y: ");
+            double z = input.readDouble(sc, "Z: ");
+            points[i] = new Point3D(x, y, z);
+        }
 
-    System.out.println("\nСозданные трехмерные точки:");
-    for (int i = 0; i < 3; i++) {
-        System.out.println("Точка " + (i + 1) + ": " + points[i]);
-    }
-}
-
-private static void testPointEquals(Scanner sc, Input input) {
-    System.out.println("\nСравнение точек");
-    
-    System.out.println("1. Сравнение двумерных точек (Point):");
-    double x1 = input.readDouble(sc, "Первая точка X: ");
-    double y1 = input.readDouble(sc, "Первая точка Y: ");
-    Point p1 = new Point(x1, y1);
-
-    double x2 = input.readDouble(sc, "Вторая точка X: ");
-    double y2 = input.readDouble(sc, "Вторая точка Y: ");
-    Point p2 = new Point(x2, y2);
-
-    System.out.println("Точка 1: " + p1 + " | Точка 2: " + p2);
-    System.out.println("Сравнение ссылок (p1 == p2): " + (p1 == p2));
-    System.out.println("Сравнение координат: " + p1.equals(p2));
-
-    System.out.println("\n2. Сравнение трехмерных точек (Point3D):");
-    double x3 = input.readDouble(sc, "Первая 3D-точка X: ");
-    double y3 = input.readDouble(sc, "Первая 3D-точка Y: ");
-    double z3 = input.readDouble(sc, "Первая 3D-точка Z: ");
-    Point3D p3d1 = new Point3D(x3, y3, z3);
-
-    double x4 = input.readDouble(sc, "Вторая 3D-точка X: ");
-    double y4 = input.readDouble(sc, "Вторая 3D-точка Y: ");
-    double z4 = input.readDouble(sc, "Вторая 3D-точка Z: ");
-    Point3D p3d2 = new Point3D(x4, y4, z4);
-
-    System.out.println("3D-точка 1: " + p3d1 + " | 3D-точка 2: " + p3d2);
-    System.out.println("Сравнение координат: " + p3d1.equals(p3d2));
-    System.out.println("Сравнение 2D и 3D точек: " + p1.equals(p3d1));
-}
-
-private static void testPointClone(Scanner sc, Input input) {
-    System.out.println("\nКлонирование точки");
-    
-    System.out.println("Клонирование двумерной точки:");
-    double x = input.readDouble(sc, "Введите X: ");
-    double y = input.readDouble(sc, "Введите Y: ");
-    Point original = new Point(x, y);
-    Point copy = original.clone();
-
-    System.out.println("Оригинал: " + original);
-    System.out.println("Клон:     " + copy);
-    System.out.println("Это один и тот же объект в памяти? - " + (original == copy));
-    System.out.println("Координаты совпадают? - " + original.equals(copy));
-
-    System.out.println("\nКлонирование трехмерной точки:");
-    double z = input.readDouble(sc, "Введите Z для 3D-точки: ");
-    Point3D original3D = new Point3D(x, y, z);
-    Point3D copy3D = original3D.clone();
-
-    System.out.println("Оригинал 3D: " + original3D);
-    System.out.println("Клон 3D:     " + copy3D);
-    System.out.println("Это один и тот же объект в памяти? - " + (original3D == copy3D));
-    System.out.println("Координаты совпадают? -" + original3D.equals(copy3D));
-}
-
-private static void testBirds(Scanner sc, Input input) {
-    System.out.println("\nПтицы");    
-    
-    Parrot parrot = null;
-    while (parrot == null) {
-        String text = input.readText(sc, "Введите фразу, которую выучит попугай: ");
-        try {
-            parrot = new Parrot(text);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Ошибка: " + e.getMessage() + " Попробуйте снова.");
+        System.out.println("\nСозданные трехмерные точки:");
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Точка " + (i + 1) + ": " + points[i]);
         }
     }
 
-    Bird[] birds = {
-        new Sparrow(),
-        new Cuckoo(),
-        parrot
-    };
+    private static void testPointEquals(Scanner sc, Input input) {
+        System.out.println("\nСравнение точек");
 
-    System.out.println("\nРезультат:");
-    for (Bird bird : birds) {
-        bird.sing();
+        System.out.println("1. Сравнение двумерных точек (Point):");
+        double x1 = input.readDouble(sc, "Первая точка X: ");
+        double y1 = input.readDouble(sc, "Первая точка Y: ");
+        Point p1 = new Point(x1, y1);
+
+        double x2 = input.readDouble(sc, "Вторая точка X: ");
+        double y2 = input.readDouble(sc, "Вторая точка Y: ");
+        Point p2 = new Point(x2, y2);
+
+        System.out.println("Точка 1: " + p1 + " | Точка 2: " + p2);
+        System.out.println("Сравнение ссылок (p1 == p2): " + (p1 == p2));
+        System.out.println("Сравнение координат: " + p1.equals(p2));
+
+        System.out.println("\n2. Сравнение трехмерных точек (Point3D):");
+        double x3 = input.readDouble(sc, "Первая 3D-точка X: ");
+        double y3 = input.readDouble(sc, "Первая 3D-точка Y: ");
+        double z3 = input.readDouble(sc, "Первая 3D-точка Z: ");
+        Point3D p3d1 = new Point3D(x3, y3, z3);
+
+        double x4 = input.readDouble(sc, "Вторая 3D-точка X: ");
+        double y4 = input.readDouble(sc, "Вторая 3D-точка Y: ");
+        double z4 = input.readDouble(sc, "Вторая 3D-точка Z: ");
+        Point3D p3d2 = new Point3D(x4, y4, z4);
+
+        System.out.println("3D-точка 1: " + p3d1 + " | 3D-точка 2: " + p3d2);
+        System.out.println("Сравнение координат: " + p3d1.equals(p3d2));
+        System.out.println("Сравнение 2D и 3D точек: " + p1.equals(p3d1));
     }
-}
 
+    private static void testPointClone(Scanner sc, Input input) {
+        System.out.println("\nКлонирование точки");
+
+        System.out.println("Клонирование двумерной точки:");
+        double x = input.readDouble(sc, "Введите X: ");
+        double y = input.readDouble(sc, "Введите Y: ");
+        Point original = new Point(x, y);
+        Point copy = original.clone();
+
+        System.out.println("Оригинал: " + original);
+        System.out.println("Клон:     " + copy);
+        System.out.println("Это один и тот же объект в памяти? - " + (original == copy));
+        System.out.println("Координаты совпадают? - " + original.equals(copy));
+
+        System.out.println("\nКлонирование трехмерной точки:");
+        double z = input.readDouble(sc, "Введите Z для 3D-точки: ");
+        Point3D original3D = new Point3D(x, y, z);
+        Point3D copy3D = original3D.clone();
+
+        System.out.println("Оригинал 3D: " + original3D);
+        System.out.println("Клон 3D:     " + copy3D);
+        System.out.println("Это один и тот же объект в памяти? - " + (original3D == copy3D));
+        System.out.println("Координаты совпадают? -" + original3D.equals(copy3D));
+    }
+
+    private static void testBirds(Scanner sc, Input input) {
+        System.out.println("\nПтицы");
+
+        Parrot parrot = null;
+        while (parrot == null) {
+            String text = input.readText(sc, "Введите фразу, которую выучит попугай: ");
+            try {
+                parrot = new Parrot(text);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Ошибка: " + e.getMessage() + " Попробуйте снова.");
+            }
+        }
+
+        Bird[] birds = {
+                new Sparrow(),
+                new Cuckoo(),
+                parrot
+        };
+
+        System.out.println("\nРезультат:");
+        for (Bird bird : birds) {
+            bird.sing();
+        }
+    }
+
+    public static void makeAllMeow(Meowable... meowables) {
+        for (Meowable m : meowables) {
+            if (m != null) {
+                m.meow();
+            }
+        }
+    }
+
+    private static void testMeow(Scanner sc, Input input) {
+        System.out.println("\n Мяуканье ");
+
+        int catCount = input.readInt(sc, "Сколько обычных котов создать (от 1 до 5)? ", 1, 5);
+        int robotCount = input.readInt(sc, "Сколько робо-котов создать (от 1 до 5)? ", 1, 5);
+
+        Meowable[] allMeowers = new Meowable[catCount + robotCount];
+        int index = 0;
+
+        for (int i = 0; i < catCount; i++) {
+            String catName = input.readString(sc, "Введите кличку кота #" + (i + 1) + ": ", false);
+            allMeowers[index++] = new Cat(catName);
+        }
+
+        for (int i = 0; i < robotCount; i++) {
+            String modelName = input.readText(sc, "Введите модель робо-кота #" + (i + 1) + ": ");
+            while (modelName == null || modelName.trim().isEmpty()) {
+                System.out.println("Ошибка: модель не может быть пустой.");
+                modelName = input.readText(sc, "Введите модель робо-кота #" + (i + 1) + ": ");
+            }
+            allMeowers[index++] = new RoboCat(modelName);
+        }
+
+        System.out.println("\nПередаем всех в общий метод makeAllMeow():");
+        makeAllMeow(allMeowers);
+
+        int n = input.readInt(sc, "\nСколько раз должен мяукнуть первый кот (" + allMeowers + ")? ", 1, 10);
+        ((Cat) allMeowers[0]).meow(n);
+    }
 
 }
