@@ -1,3 +1,4 @@
+package ru.gachegova.geometry;
 import java.util.Objects;
 
 public class Point3D extends Point {

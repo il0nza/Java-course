@@ -1,3 +1,4 @@
+package ru.gachegova.people;
 public class Name {
     private final String lastName;
     private final String name;

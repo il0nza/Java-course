@@ -1,3 +1,4 @@
+package ru.gachegova.bird;
 import java.util.Random;
 
 public class Cuckoo extends Bird {

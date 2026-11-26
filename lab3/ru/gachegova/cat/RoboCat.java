@@ -1,3 +1,4 @@
+package ru.gachegova.cat;
 public class RoboCat implements Meowable {
     private final String model;
 

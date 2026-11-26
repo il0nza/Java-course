@@ -1,11 +1,47 @@
+package ru.gachegova.main;
+
 import java.util.Scanner;
+import static java.lang.Integer.parseInt;
+import static java.lang.Math.pow;
+
+import ru.gachegova.bird.Bird;
+import ru.gachegova.bird.Cuckoo;
+import ru.gachegova.bird.Parrot;
+import ru.gachegova.bird.Sparrow;
+import ru.gachegova.cat.Cat;
+import ru.gachegova.cat.Meowable;
+import ru.gachegova.cat.RoboCat;
+import ru.gachegova.geometry.Point;
+import ru.gachegova.geometry.Point3D;
+import ru.gachegova.people.Name;
+import ru.gachegova.people.Person;
+import ru.gachegova.secret.Secret;
+import ru.gachegova.utils.Input;
 
 public class Main {
-    public static void main() {
+    // задача 7.3
+    public static double powerFromStrings(String xStr, String yStr) {
+        int x = parseInt(xStr.trim());
+        int y = parseInt(yStr.trim());
+        return pow(x, y);
+    }
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in, "Cp866");
         Input input = new Input();
         boolean run = true;
         int choice, choice_m;
+
+        if (args.length >= 2) {
+            System.out.println("Возведение в степень из аргументов командной строки");
+            try {
+                double res = powerFromStrings(args[0], args[1]);
+                System.out.println(args + " в степени " + args + " = " + res);
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка: аргументы командной строки должны быть целыми числами!");
+            }
+        }
+
         while (run) {
             System.out.println();
             System.out.print("""
@@ -16,8 +52,7 @@ public class Main {
                         4 - Задание 4. Птицы.
                         5 - Задание 5. Мяуканье.
                         6 - Задание 6. Сравнение точек.
-                        7 - Задание 7.
-                        8 - Задание 8. Клонирование точки.
+                        7 - Задание 8. Клонирование точки.
                         0 - Выход
                       """);
             choice = input.readInt(sc, "Ваш выбор: ", 0, 8);
@@ -32,11 +67,11 @@ public class Main {
                     choice_m = input.readInt(sc, "Ваш выбор: ", 1, 2);
                     switch (choice_m) {
                         case 1:
-                            System.out.println("\nАвтоматический тест исключения: попытка создания имени с null: ");
+                            System.out.println("\nАвтоматический тест: попытка создания имени с null: ");
                             try {
                                 Name badName = new Name("", null, "");
                             } catch (IllegalArgumentException e) {
-                                System.out.println("Поймана ожидаемая ошибка: " + e.getMessage());
+                                System.out.println("Поймана ошибка: " + e.getMessage());
                             }
 
                             testName(sc, input);
@@ -65,9 +100,6 @@ public class Main {
                     testPointEquals(sc, input);
                     break;
                 case 7:
-
-                    break;
-                case 8:
                     testPointClone(sc, input);
                     break;
                 case 0:
@@ -80,6 +112,7 @@ public class Main {
         }
     }
 
+    //задача 1.7
     private static void testName(Scanner sc, Input input) {
         System.out.println("\n Тест класса Имя");
         int count = input.readInt(sc, "Сколько имен вы хотите добавить? ", 1, 10);
@@ -109,6 +142,7 @@ public class Main {
         }
     }
 
+    //задача 1.8
     private static void testPerson(Scanner sc, Input input) {
         System.out.println("\nТест класса Человек");
         int count = input.readInt(sc, "Сколько людей вы хотите добавить? ", 1, 10);
@@ -165,6 +199,7 @@ public class Main {
         }
     }
 
+    //задача 2.2
     private static void testSecret(Scanner sc, Input input) {
         System.out.println("\nТест класса Секрет");
         int count = input.readInt(sc, "Сколько человек будет в цепочке секрета (от 2 до 10)? ", 2, 10);
@@ -212,6 +247,7 @@ public class Main {
         }
     }
 
+    //задача 3ю5
     private static void testPoint3D(Scanner sc, Input input) {
         System.out.println("\nТрехмерная точка");
         Point3D[] points = new Point3D[3];
@@ -230,6 +266,7 @@ public class Main {
         }
     }
 
+    // задача 6.2
     private static void testPointEquals(Scanner sc, Input input) {
         System.out.println("\nСравнение точек");
 
@@ -262,6 +299,7 @@ public class Main {
         System.out.println("Сравнение 2D и 3D точек: " + p1.equals(p3d1));
     }
 
+    // задача 8.4
     private static void testPointClone(Scanner sc, Input input) {
         System.out.println("\nКлонирование точки");
 
@@ -287,6 +325,7 @@ public class Main {
         System.out.println("Координаты совпадают? -" + original3D.equals(copy3D));
     }
 
+    //задча 4.3
     private static void testBirds(Scanner sc, Input input) {
         System.out.println("\nПтицы");
 
@@ -312,6 +351,7 @@ public class Main {
         }
     }
 
+    //задача 5.4
     public static void makeAllMeow(Meowable... meowables) {
         for (Meowable m : meowables) {
             if (m != null) {

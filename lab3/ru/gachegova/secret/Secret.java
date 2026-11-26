@@ -1,3 +1,4 @@
+package ru.gachegova.secret;
 import java.util.Random;
 
 public class Secret {

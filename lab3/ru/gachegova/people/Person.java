@@ -1,3 +1,4 @@
+package ru.gachegova.people;
 public class Person {
     private Name name;
     private int height;

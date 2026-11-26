@@ -1,3 +1,4 @@
+package ru.gachegova.bird;
 public class Sparrow extends Bird {
     @Override
     public void sing() {

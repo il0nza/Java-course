@@ -1,3 +1,4 @@
+package ru.gachegova.cat;
 public class Cat implements Meowable {
     private final String name;
 

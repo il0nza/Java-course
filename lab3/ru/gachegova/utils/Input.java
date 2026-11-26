@@ -1,3 +1,4 @@
+package ru.gachegova.utils;
 import java.util.Scanner;
 
 public class Input {
