@@ -13,7 +13,7 @@ public class Main {
                         1 - Задание 1.
                         2 - Задание 2. Секреты.
                         3 - Задание 3. Трехмерная точка.
-                        4 - Задание 4. Фигуры.
+                        4 - Задание 4. Птицы.
                         5 - Задание 5. Мяуканье.
                         6 - Задание 6. Сравнение точек.
                         7 - Задание 7.
@@ -56,7 +56,7 @@ public class Main {
                     testPoint3D(sc, input);
                     break;
                 case 4:
-
+                    testBirds(sc, input);
                     break;
                 case 5:
 
@@ -286,5 +286,31 @@ private static void testPointClone(Scanner sc, Input input) {
     System.out.println("Это один и тот же объект в памяти? - " + (original3D == copy3D));
     System.out.println("Координаты совпадают? -" + original3D.equals(copy3D));
 }
+
+private static void testBirds(Scanner sc, Input input) {
+    System.out.println("\nПтицы");    
+    
+    Parrot parrot = null;
+    while (parrot == null) {
+        String text = input.readText(sc, "Введите фразу, которую выучит попугай: ");
+        try {
+            parrot = new Parrot(text);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка: " + e.getMessage() + " Попробуйте снова.");
+        }
+    }
+
+    Bird[] birds = {
+        new Sparrow(),
+        new Cuckoo(),
+        parrot
+    };
+
+    System.out.println("\nРезультат:");
+    for (Bird bird : birds) {
+        bird.sing();
+    }
+}
+
 
 }
